@@ -6,6 +6,12 @@ use IO::Socket::INET;
 
 my $port = shift // 8000;
 
+# Exit with no error on failure
+$SIG{__DIE__} = sub {
+  print shift;
+  exit 0;
+};
+
 # Find the IP of the host machine
 my $host_ip;
 open my $route, '-|', 'ip', 'route' or die "Can't get routes\n";
