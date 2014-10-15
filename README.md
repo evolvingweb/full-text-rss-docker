@@ -3,6 +3,8 @@ full-text-rss-docker
 
 A Docker configuration for [full-text-rss](http://code.fivefilters.org/full-text-rss) , allowing you to easily convert RSS feeds with excerpts into full-text.
 
+[![Circle CI](https://circleci.com/gh/evolvingweb/full-text-rss-docker.png?style=badge)](https://circleci.com/gh/evolvingweb/full-text-rss-docker)
+
 Usage
 ----
 * Get [Docker](https://docs.docker.com/installation/) installed
