@@ -1,0 +1,36 @@
+#!/usr/bin/perl
+use warnings;
+use strict;
+
+use IO::Socket::INET;
+
+my $port = shift // 8000;
+
+# Find the IP of the host machine
+my $host_ip;
+open my $route, '-|', 'ip', 'route' or die "Can't get routes\n";
+while (my $line = <$route>) {
+  if ($line =~ /^default via (\S+)/) {
+    $host_ip = $1;
+    last;
+  }
+}
+die "Can't find host IP\n" unless defined $host_ip;
+
+# Try to connect
+my $addr =  "$host_ip:$port";
+my $sock = IO::Socket::INET->new(PeerAddr => $addr, Timeout => 1)
+  or die "Can't connect to host\n";
+
+# See if it looks like squid-deb-proxy
+$sock->write("HEAD /\n");
+$sock->read(my $output, 1024);
+$output =~ /squid-deb-proxy/ or die "No squid-deb-proxy running\n";
+
+# Write a config file
+open my $conf, '>', "/etc/apt/apt.conf.d/30proxy"
+  or die "Can't write config file\n";
+printf $conf "Acquire::http::Proxy \"http://%s\";\n", $addr;
+close $conf;
+
+print "Detected squid-deb-proxy at $addr\n";
