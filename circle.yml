@@ -16,6 +16,6 @@ test:
     # Should expand feed
     - grep "Writing and editing is smoother and more immersive" out.html
     # Should not include non-article content
-    - ! grep "Download WordPress" out.html
+    - grep "Download WordPress" out.html && false || true
 
 
