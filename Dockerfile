@@ -9,7 +9,19 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update
 RUN apt-get install -y git libapache2-mod-php5
 
-# git clone https://bitbucket.org/fivefilters/full-text-rss.git
+# Install full-text-rss
+RUN rm -r /var/www/html
+RUN git clone https://bitbucket.org/fivefilters/full-text-rss.git /var/www/html
 
+# Setup cache dir
+RUN chown www-data /var/www/html/cache
+RUN install -o www-data -d /var/www/html/cache/rss
 
+# Configure
+ADD custom_config.php /var/www/html/custom_config.php
 
+# TODO
+# CI?
+
+# Run apache
+CMD ["/usr/sbin/apache2ctl", "-DFOREGROUND"]
