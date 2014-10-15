@@ -1,0 +1,21 @@
+machine:
+  services:
+    - docker
+
+dependencies:
+  override:
+    - make build
+    - make run:
+				background: true
+
+test:
+  override:
+		# Should not fail
+    - curl -v 'http://localhost:14080/makefulltextfeed.php?url=https://gist.githubusercontent.com/vasi/47fe3b26048e8e801e23/raw/2fb4e26c772675b06a5bcb44f49228cd002c6c77/gistfile1.txt' > out.html
+		- cat out.html
+		# Should expand feed
+		- grep "Writing and editing is smoother and more immersive" out.html
+		# Should not include non-article content
+		- ! grep "Download WordPress" out.html
+
+
