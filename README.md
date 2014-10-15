@@ -6,13 +6,14 @@ A Docker configuration for [full-text-rss](http://code.fivefilters.org/full-text
 Usage
 ----
 * Get [Docker](https://docs.docker.com/installation/) installed
-* Run ``make build``, then ``make run``
+* Run `make build`, then `make run`
 * Access the app on port 14080, eg:
-   curl 'http://localhost:makefulltextfeed.php?url=https://smbjorklund.no/taxonomy/term/110/feed'
+
+```curl 'http://localhost:makefulltextfeed.php?url=https://smbjorklund.no/taxonomy/term/110/feed'```
 
 Configuration
 ----
 
-You can change the port by running ``make run PORT=1234``.
+You can change the port by running `make run PORT=1234`.
 
-You can also edit ``custom_config.php`` to change the full-text-rss configuration, see [the docs](http://code.fivefilters.org/full-text-rss/src/master/config.php) for details.
+You can also edit `custom_config.php` to change the full-text-rss configuration, see [the docs](http://code.fivefilters.org/full-text-rss/src/master/config.php) for details.
