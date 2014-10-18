@@ -11,7 +11,7 @@ Usage
 * Run `make build`, then `make run`
 * Access the app on port 14080, eg:
 
-```curl 'http://localhost:makefulltextfeed.php?url=https://smbjorklund.no/taxonomy/term/110/feed'```
+```curl 'http://localhost:14040/makefulltextfeed.php?url=https://smbjorklund.no/taxonomy/term/110/feed'```
 
 Configuration
 ----
