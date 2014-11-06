@@ -7,7 +7,7 @@ RUN /tmp/detect_squid_deb_proxy
 # Get some packages
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update
-RUN apt-get install -y git libapache2-mod-php5
+RUN apt-get install -y git libapache2-mod-php5 php5-curl
 
 # Install full-text-rss
 RUN rm -r /var/www/html
