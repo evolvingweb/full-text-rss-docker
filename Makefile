@@ -17,6 +17,10 @@ debug: rm
 run: rm
 	$(RUN) --name=$(TAG) $(OPTS) $(TAG)
 
+MOUNTS = -v /var/www/html:$(PWD)/full-text-rss
+run_mounted: rm
+	$(RUN) --name=$(TAG) $(MOUNTS) $(OPTS) $(TAG)
+
 rm:
 	-docker kill $(TAG) 2>/dev/null
 	-docker rm $(TAG) 2>/dev/null
