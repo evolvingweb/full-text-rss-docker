@@ -11,7 +11,7 @@ RUN apt-get install -y git libapache2-mod-php5 php5-curl
 
 # Install full-text-rss
 RUN rm -r /var/www/html
-RUN git clone https://bitbucket.org/fivefilters/full-text-rss.git /var/www/html
+ADD full-text-rss /var/www/html
 
 # Setup cache dir
 RUN chown www-data /var/www/html/cache

@@ -1,9 +1,13 @@
 TAG = full-text-rss
 PORT = 14080
+REPO = https://bitbucket.org/fivefilters/full-text-rss.git
+BRANCH = master
 
-build:
+full-text-rss:
+	git clone -b $(BRANCH) $(REPO) $@
+
+build: full-text-rss
 	docker build -t $(TAG) .
-
 
 PUBLISH = -p $(PORT):80
 RUN = docker run -t $(PUBLISH)
