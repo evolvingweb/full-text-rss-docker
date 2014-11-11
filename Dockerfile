@@ -1,5 +1,8 @@
 FROM ubuntu:14.04
 
+# for busting docker caches, simply increment this dummy variable
+ENV docker_cache_bust 1
+
 # Detect a squid deb proxy on the docker host
 ADD scripts/detect_squid_deb_proxy /tmp/detect_squid_deb_proxy
 RUN /tmp/detect_squid_deb_proxy
@@ -7,7 +10,7 @@ RUN /tmp/detect_squid_deb_proxy
 # Get some packages
 ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update
-RUN apt-get install -y git libapache2-mod-php5 php5-curl
+RUN apt-get install -y git libapache2-mod-php5 php5-curl php5-tidy php5-apcu
 
 # Install full-text-rss
 RUN rm -r /var/www/html
