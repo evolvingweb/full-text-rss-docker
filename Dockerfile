@@ -18,7 +18,12 @@ RUN chown www-data /var/www/html/cache
 RUN install -o www-data -d /var/www/html/cache/rss
 
 # Configure
-ADD custom_config.php /var/www/html/custom_config.php
+ADD password /tmp/password
+ADD custom_config.php /tmp/custom_config.php
+RUN cat /tmp/custom_config.php \
+  | sed -e 's/@PASSWORD@/'"$(cat /tmp/password)"'/' \
+  > /var/www/html/custom_config.php \
+  && rm /tmp/password /tmp/custom_config.php
 
 # TODO
 # CI?

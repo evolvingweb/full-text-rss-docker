@@ -6,6 +6,10 @@ BRANCH = master
 full-text-rss:
 	git clone -b $(BRANCH) $(REPO) $@
 
+PASSWORD = $(shell dd if=/dev/urandom count=1 2>/dev/null | hexdump -e '"%x"' -n 10)
+password:
+	echo $(PASSWORD) > $@
+
 build: full-text-rss
 	docker build -t $(TAG) .
 
