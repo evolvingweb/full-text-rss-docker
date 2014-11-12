@@ -6,6 +6,7 @@ dependencies:
   override:
     - make build
     - make run
+    - sleep 3
 
 test:
   override:
