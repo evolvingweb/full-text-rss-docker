@@ -5,8 +5,7 @@ machine:
 dependencies:
   override:
     - make build
-    - make run:
-        background: true
+    - make run
 
 test:
   override:
